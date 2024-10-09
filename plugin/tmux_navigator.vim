@@ -91,6 +91,16 @@ function! s:TmuxNavigatorProcessList()
 endfunction
 command! TmuxNavigatorProcessList call s:TmuxNavigatorProcessList()
 
+function! s:TmuxNavigatorDependencyCheck()
+  let ps_version = system("ps --version")
+  if ps_version =~ 'procps-ng'
+    echo "Compatible version of ps is installed."
+  else
+    echo "Incompatible version of ps found. Install procps-ng ps."
+  endif
+endfunction
+command! TmuxNavigatorDependencyCheck call s:TmuxNavigatorDependencyCheck()
+
 let s:tmux_is_last_pane = 0
 augroup tmux_navigator
   au!
